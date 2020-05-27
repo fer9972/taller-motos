@@ -54,7 +54,7 @@ let consultarMantenimientos = async () => {
 //editar un mantenimiento
 let modificarMantenimiento = async (mantenimiento, placa) => {
     if (mantenimiento.placa != placa) {
-      console.log(usuario.placa);
+      console.log(mantenimiento.placa);
       throw {
         ok: false,
         mensaje: "La placa del mantenimiento no corresponde al enviado.",
@@ -62,17 +62,20 @@ let modificarMantenimiento = async (mantenimiento, placa) => {
     }
     try {
       let _servicio = new servicioPg();
-      let sql = `UPDATE public.mantenimiento
+      let sql = `UPDATE public.mantenimientos
           SET
+          id_mecanico='${mantenimiento.id_mecanico}',
+          placa='${mantenimiento.placa}',
+          fecha='${mantenimiento.fecha}',
           trabajos_realizados='${mantenimiento.trabajos_realizados}',
           horas_invertidas='${mantenimiento.horas_invertidas}'
-          WHERE placa=${mantenimiento.placa};`;
+          WHERE placa='${placa}';`;
   
       let respuesta = await _servicio.ejecutarSql(sql);
       return respuesta;
       console.log("editado correctamente")
     } catch (error) {
-        console.log("no se pudo editar")
+        console.log("no se pudo editar " + error)
       throw { ok: false, err: error };
     }
   };
@@ -81,7 +84,8 @@ let modificarMantenimiento = async (mantenimiento, placa) => {
 let consultarMantenimiento = async (id_mecanico) => {
     try {
         let _servicio = new servicioPg();
-        let sql = `SELECT id_mecanico, placa, fecha from public.mantenimientos where id_mecanico= '${id_mecanico}';`;
+        let sql = `SELECT id_mecanico, placa, fecha, trabajos_realizados, horas_invertidas
+         from public.mantenimientos where id_mecanico= '${id_mecanico}';`;
         let respuesta = await _servicio.ejecutarSql(sql);
         return respuesta;
     } catch (error) {

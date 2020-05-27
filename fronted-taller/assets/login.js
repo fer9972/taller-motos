@@ -53,6 +53,7 @@ export default {
         let documentoLogin = localStorage.getItem("documento");
 
         let rol = res.data.rol
+        localStorage.setItem('rol', rol);
         console.log("el rol es:" + rol);
         localStorage.setItem('token', res.data.info);
 

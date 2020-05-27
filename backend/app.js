@@ -26,8 +26,8 @@ app.use(rutas_getion_usuarios);
 const rutas_getion_mantenimiento = require("./routes/gestion-mantenimiento");
 app.use(rutas_getion_mantenimiento);
 
-//const rutas_verificacion = require("./routes/autenticacion");
-//app.use(rutas_verificacion);
+const rutas_verificacion = require("./routes/autenticacion");
+app.use(rutas_verificacion);
 
 
 

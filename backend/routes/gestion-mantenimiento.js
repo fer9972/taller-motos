@@ -54,7 +54,7 @@ router.put("/mantenimiento/:placa", (req, res) => {
         res.send({ ok: true, mensaje: "el mantenimiento ha sido modificado", info: respuestaDB});
       })
       .catch((error) => {
-        res.send(error);
+        res.send("error " + error);
       });
   });
 
