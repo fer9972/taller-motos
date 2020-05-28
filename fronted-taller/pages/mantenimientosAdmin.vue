@@ -42,13 +42,14 @@
           placeholder="Ingrese las horas"
         ></b-form-input>
       </b-form-group>
+      <b-button variant="danger" v-if="!enEdicion">Actualizar datos</b-button>
 
-      <b-button type="submit" variant="danger" v-if="!enEdicion">Aceptar</b-button>
-
+         <h1>Mantenimientos</h1>
          <b-table responsive hover :items="lista_mantenimientos" :fields="fields" head-variant="dark">
         <template v-slot:cell(acciones)="row">
           <div>
-            <b-button size="sm" @click="cargarMantenimientosEditar(row)"  block variant="danger" class="mr-2">Hacer mantenimiento</b-button>
+            <b-button size="sm" @click="cargarMantenimientosEditar(row)" block variant="danger" class="mr-2">Editar mantenimiento</b-button>
+            <b-button size="sm" @click="eliminarMantenimiento(row)"  block variant="danger" class="mr-2">Eliminar mantenimiento</b-button>
           </div>
         </template>
       </b-table>
@@ -57,4 +58,4 @@
   </b-card-body>
 </template>
 
-<script src="@/assets/mantenimientos.js"/>
+<script src="@/assets/mantenimientoAdmin.js"/>

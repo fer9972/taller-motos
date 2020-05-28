@@ -28,7 +28,7 @@ router.post("/usuario", (req, res) => {
       // Valida la información, sino se envia al catch
       //_controlador.validarPublicacion(info_publicacion);
   
-      // Guardar la moto en base de datos
+      // Guardar usuario  en base de datos
       _controlador.guardarUsuario(usuario).then(respuestaDB => {
         res.send({ ok: true, mensaje: "usuario guardado", info: usuario});
       }).catch(error => {
@@ -42,7 +42,7 @@ router.post("/usuario", (req, res) => {
 });
 
 /**
- * Modificar una publicacion
+ * Modificar un usuario
  */
 router.put("/usuario/:documento", (req, res) => {
   // Capturar el parámetro de la ruta
@@ -77,6 +77,5 @@ router.delete("/usuario/:documento", (req, res) => {
         res.send("no se pudo eliminar "+ error);
       });
   });
-
 
   module.exports = router;

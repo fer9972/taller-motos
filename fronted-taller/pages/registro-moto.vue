@@ -96,13 +96,14 @@
 
       
 
-      <b-button type="submit" variant="primary" v-if="!enEdicion">Registrar Moto</b-button>
+      <b-button type="submit" variant="danger" v-if="!enEdicion">Registrar Moto</b-button>
       <b-button @click="actualizarMoto()" variant="danger" v-else>Actualizar Moto</b-button>
 
+      <h1>Motos en el taller</h1>
       <b-table responsive hover :items="lista_motos" :fields="fields" head-variant="dark">
         <template v-slot:cell(acciones)="row">
           <div>
-            <b-button size="sm" @click="cargarMotoEditar(row)" class="mr-2">Editar</b-button>
+            <b-button size="sm" @click="cargarMotoEditar(row)" block variant="danger" class="mr-2">Editar</b-button>
           </div>
         </template>
       </b-table>

@@ -26,7 +26,7 @@ router.post("/mantenimiento", (req, res) => {
       // Valida la información, sino se envia al catch
       //_controlador.validarPublicacion(info_publicacion);
   
-      // Guardar la moto en base de datos
+      // Guardar el mantenimiento en base de datos
       _controlador.guardarMantenimiento(mantenimiento).then(respuestaDB => {
         res.send({ ok: true, mensaje: "Mantenimiento guardado", info: moto});
       }).catch(error => {
@@ -76,5 +76,20 @@ router.get("/mantenimiento/:id_mecanico", (req, res) => {
       });
   });
 
+  /**
+ * Eliminar un mantenimiento
+ */
+router.delete("/mantenimiento/:placa", (req, res) => {
+  let placa = req.params.placa;
+  console.log(placa);
+  _controlador
+    .eliminarMantenimiento(placa)
+    .then((respuestaDB) => {
+      res.send({ ok: true, info: {}, mensaje: "mantenimiento eliminado correctamente" });
+    })
+    .catch((error) => {
+      res.send("no se pudo eliminar"+ error);
+    });
+});
 
   module.exports = router;

@@ -54,14 +54,15 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-button type="submit" variant="primary" v-if="!enEdicion">Registrar Usuario</b-button>
+      <b-button type="submit"  variant="danger" v-if="!enEdicion">Registrar Usuario</b-button>
       <b-button @click="actualizarUsuario()" variant="danger" v-else>Actualizar datos</b-button>
 
+      <h1>Usuarios</h1>
       <b-table responsive hover :items="lista_usuarios" :fields="fields" head-variant="dark">
         <template v-slot:cell(acciones)="row">
           <div>
-            <b-button size="sm" @click="eliminarUsuario(row)" class="mr-2">Eliminar</b-button>
-            <b-button size="sm" @click="cargarUsuarioEditar(row)" class="mr-2">Editar</b-button>
+            <b-button size="sm" @click="eliminarUsuario(row)" block variant="danger" class="mr-2">Eliminar</b-button>
+            <b-button size="sm" @click="cargarUsuarioEditar(row)" block variant="danger" class="mr-2">Editar</b-button>
           </div>
         </template>
       </b-table>

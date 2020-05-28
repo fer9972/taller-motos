@@ -1,13 +1,12 @@
-/**
- * Aquì se encuentran los metodos para el crud de los autores
- */
+import { BIconAspectRatioFill } from 'bootstrap-vue';
+
 const axios = require('axios');
 export default {
     data() {
         return {
             enEdicion: false,
 
-            //se guardan todos los autores nuevos que se registran 
+            //se guardan todos los usuarios nuevos que se registran 
             usuario: {
                 tipo_documento: "",
                 documento: "",
@@ -55,12 +54,13 @@ export default {
             axios
                 .post(direccion, this.usuario, { headers: { token } })
                 .then((response) => {
-                    console.log("usuario agregado correctamente");
+                    alert("El usuario fue agregado correctamente");
                     console.log(response);
 
                 })
                 .catch((error) => {
                     console.log(error);
+                    alert("El usuario no se pudo agregar correctamente");
                 });
             this.usuario = {
                 tipo_documento: "",
@@ -102,10 +102,11 @@ export default {
             documento.disabled = true;
             clave.disabled = true;
             tipo_documento.disabled = true;
+            rol.disabled = true;
         },
 
 
-        //agregar los nuevos valores a la publicacion editada
+        //agregar los nuevos valores al usuario editado
         actualizarUsuario() {
             let documentoEditar = this.usuario.documento;
             console.log("documentoeditar" + this.documentoEditar)
@@ -118,6 +119,7 @@ export default {
                     console.log(response);
                     this.enEdicion = false;
                     this.cargarUsuarios();
+                    rol.disabled = false;
                     documento.disabled = false;
                     clave.disabled = false;
                     tipo_documento.disabled = false;

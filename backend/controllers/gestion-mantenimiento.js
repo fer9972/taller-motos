@@ -1,13 +1,13 @@
 /**
- * Controlador de gestion-motos
+ * Controlador de gestion-mantenimiento
  */
 
 //importar el servicion de postgres
 const servicioPg = require("../services/postgres");
 
 /**
- * Guardando la moto en la base de datos
- * @param {*} moto datos de la moto en forma de JSON
+ * Guardando el mantenimineto en la base de datos
+ * @param {*} mantenimiento datos del mantenimiento en forma de JSON
  */
 let guardarMantenimiento = async (mantenimiento) => {
     try {
@@ -31,7 +31,7 @@ let guardarMantenimiento = async (mantenimiento) => {
 let eliminarMantenimiento = async (placa) => {
     try {
         let _servicio = new servicioPg();
-        let sql = `DELETE FROM public.mantenimiento WHERE placa ='${placa}'`;
+        let sql = `DELETE FROM public.mantenimientos WHERE placa ='${placa}'`;
         let respuesta = await _servicio.ejecutarSql(sql);
         return respuesta;
     } catch (error) {
@@ -43,7 +43,7 @@ let eliminarMantenimiento = async (placa) => {
 let consultarMantenimientos = async () => {
     try {
         let _servicio = new servicioPg();
-        let sql = `SELECT id_mecanico, placa, fecha from public.mantenimientos`;
+        let sql = `SELECT id_mecanico, placa, fecha, trabajos_realizados, horas_invertidas from public.mantenimientos`;
         let respuesta = await _servicio.ejecutarSql(sql);
         return respuesta;
     } catch (error) {

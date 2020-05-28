@@ -1,13 +1,11 @@
-/**
- * Aquì se encuentran los metodos para el crud de los seguimientos
- */
+
 const axios = require('axios');
 export default {
     data() {
         return {
             enEdicion: false,
   
-            //En este arreglo se meten todas los usuarios
+            //En este arreglo se meten todas las motos
             lista_motos: [
                 {
                     placa: "",
@@ -31,20 +29,20 @@ export default {
         }
 
     },
-    //aca apenas se carga la pagina se llama el metodo para listar los seguimientos
+    //aca apenas se carga la pagina se llama el metodo para listar las motos
     mounted() {
         this.cargarMotos()
     },
     methods: {
 
-        //metodo para guardar el id de la publicacion seleccionada para evaluar
+        //metodo para guardar la placa de la moto seleccionada 
         guardarPlacaMoto({ item }) {
             let placa = item.placa;
             console.log(placa);
             localStorage.setItem('placa_moto_evalular', placa);
         },
 
-        //metodo para cargar los usuarios de la BD
+        //metodo para cargar las motos de la BD
         cargarMotos() {
             let url = "http://localhost:3001/moto";
             let token = localStorage.getItem("token");

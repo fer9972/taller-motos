@@ -4,7 +4,7 @@ export default {
         return {
             enEdicion: false,
             slide: 0,
-             sliding: null,
+            sliding: null,
             arregloPermisos: [],
 
             show: true
@@ -39,9 +39,13 @@ export default {
 
                 },
                 {
+                    nombre: "Mantenimientos",
+                    url: "/mantenimientosAdmin"
+
+                },
+                {
                     nombre: "Salir",
                     url: "http://localhost:3000"
-
                 }]
             } else {
                 this.arregloPermisos = [{
@@ -62,10 +66,10 @@ export default {
         },
         onSlideStart(slide) {
             this.sliding = true
-          },
-          onSlideEnd(slide) {
+        },
+        onSlideEnd(slide) {
             this.sliding = false
-          }
+        }
     },
-    
+
 };

@@ -1,13 +1,11 @@
-/**
- * Aquì se encuentran los metodos para el crud de los autores
- */
+
 const axios = require('axios');
 export default {
     data() {
         return {
             enEdicion: false,
 
-            //se guardan todos los autores nuevos que se registran 
+            //se guardan todos las motos nuevas que se registran 
             moto: {
                 placa: "",
                 estado: "",
@@ -26,7 +24,7 @@ export default {
 
             fields: ["placa", "estado", "marca", "acciones"],
 
-            //En este arreglo se meten todas los usuarios
+            //En este arreglo se meten todas las motos
             lista_motos: [
                 {
                     placa: "",
@@ -55,7 +53,7 @@ export default {
     },
 
     methods: {
-        //metodo para guardar los usuarios en la BD
+        //metodo para guardar las motos en la BD
         guardarMoto() {
             let direccion = "http://localhost:3001/moto";
             let token = localStorage.getItem("token");
@@ -63,7 +61,6 @@ export default {
             axios
                 .post(direccion, this.moto, { headers: { token } })
                 .then((response) => {
-                    console.log("moto agregadoa correctamente");
                     alert("la modo fue ingresada correctamente al sistema")
                     console.log(response);
 
@@ -90,24 +87,25 @@ export default {
 
         },
 
-        //metodo para cargar los usuarios de la BD
+        //metodo para cargar las motos de la BD
         cargarMotos() {
             let url = "http://localhost:3001/moto";
             let token = localStorage.getItem("token");
             axios.get(url, { headers: { token } }).then(respuesta => {
-                let data = respuesta.data
-                if (data.ok) {
-                    this.lista_motos = data.info
-                }
-                this.mensaje = data.mensaje;
-                console.log(respuesta);
+                this.lista_motos = respuesta.data.info.map(x => {
+                    var f = Object.assign({}, x);
+                    f.vencimiento_soat = x.vencimiento_soat.slice(0, 10);
+
+                    f.vencimiento_tecnomecanica = x.vencimiento_tecnomecanica.slice(0, 10);
+                    return f;
+                  });
             }).catch(error => {
                 console.log(this.mensaje = "Ha ocurrido un error")
             });
 
         },
 
-        //cargar un usuario para editarlo
+        //cargar una moto para editarla
         cargarMotoEditar({ item }) {
             let editar = this.lista_motos.find(moto => moto.placa == item.placa);
             this.enEdicion = true;
@@ -120,7 +118,7 @@ export default {
         },
 
 
-        //agregar los nuevos valores a la publicacion editada
+        //agregar los nuevos valores de la moto editada
         actualizarMoto() {
             let placaEditar = this.moto.placa;
             let direccion = "http://localhost:3001/moto/" + placaEditar;

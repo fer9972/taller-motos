@@ -1,13 +1,13 @@
 /**
- * Controlador de info-publicacion
- */
-
+ * Controlador de gestion-usuario
+*/
 //importar el servicion de postgres
+
 const servicioPg = require('../services/postgres')
 
 /**
- * Guardando el autor en la base de datos
- * @param {*} Usuario datos del autor en en forma de JSON
+ * Guardando el usuario en la base de datos
+ * @param {*} Usuario datos del usuario en en forma de JSON
  */
 let guardarUsuario = async (usuario)=> {
     try {
@@ -78,6 +78,7 @@ let eliminarUsuario = async (documento) => {
     }
   };
 
+  //exportando metodos en forma de JSON
   module.exports = {
     guardarUsuario,
     consultarUsuarios,

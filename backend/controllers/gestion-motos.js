@@ -37,6 +37,7 @@ let guardarMoto = async (moto) => {
     }
   };
 
+  //consultando las motos de la BD
   let consultarMotos = async () => {
     try {
       let _servicio = new servicioPg();
@@ -48,6 +49,7 @@ let guardarMoto = async (moto) => {
     }
   };
 
+  //modificando una moto
   let modificarMoto = async (moto, placa) => {
     if (moto.placa != placa) {
       console.log(moto.placa);
@@ -80,7 +82,7 @@ let guardarMoto = async (moto) => {
   };
 
 
-
+//exportando metodos en forma de JSON
   module.exports = {
     guardarMoto,
     consultarMotos,
